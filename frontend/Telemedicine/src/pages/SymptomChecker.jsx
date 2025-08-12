@@ -9,7 +9,7 @@ const SymptomChecker = () => {
   const analyzeSymptoms = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8080/api/symptom-checker/analyze", {
+      const response = await fetch("https://telemedicine-0i2m.onrender.com/api/symptom-checker/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ symptoms }),

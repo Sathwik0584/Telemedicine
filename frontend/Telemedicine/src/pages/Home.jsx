@@ -26,7 +26,7 @@ const PatientHome = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/doctors");
+        const response = await axios.get("https://telemedicine-0i2m.onrender.com/api/doctors");
         const doctorsData = Array.isArray(response.data) ? response.data : [];
         setDoctors(doctorsData);
       } catch (error){

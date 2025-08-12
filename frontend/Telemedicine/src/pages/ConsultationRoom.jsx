@@ -37,7 +37,7 @@ const ConsultationRoom = () => {
     const fetchAppointment = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:8080/api/appointments/${appointmentId}`, {
+        const res = await axios.get(`https://telemedicine-0i2m.onrender.com/api/appointments/${appointmentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAppointment(res.data);
@@ -55,7 +55,7 @@ const ConsultationRoom = () => {
     try {
       const token = localStorage.getItem("token");
       console.log(appointment.patient);
-      const res = await axios.get(`http://localhost:8080/api/patients/medical-history/${appointment.patient._id}`, {
+      const res = await axios.get(`https://telemedicine-0i2m.onrender.com/api/patients/medical-history/${appointment.patient._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPatientHistory(res.data);
@@ -204,7 +204,7 @@ const ConsultationRoom = () => {
                     ? `/api/appointments/${appointmentId}/doctor-complete`
                     : `/api/appointments/${appointmentId}/patient-complete`;
 
-                const res = await axios.put(`http://localhost:8080${endpoint}`, {}, {
+                const res = await axios.put(`https://telemedicine-0i2m.onrender.com${endpoint}`, {}, {
                   headers: { Authorization: `Bearer ${token}` },
                 });
 

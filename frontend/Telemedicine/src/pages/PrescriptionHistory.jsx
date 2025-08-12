@@ -22,7 +22,7 @@ const PrescriptionHistory = ({ appointmentId }) => {
         const fetchHistory = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get(`http://localhost:8080/api/prescriptions/${appointmentId}`, {
+                const res = await axios.get(`https://telemedicine-0i2m.onrender.com/api/prescriptions/${appointmentId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setHistory(res.data);

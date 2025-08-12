@@ -17,7 +17,7 @@ const ReviewFormPage = () => {
     const fetchAppointment = async () => {
       try {
         const token = localStorage.getItem("token");
-        const { data } = await axios.get(`http://localhost:8080/api/appointments/${appointmentId}`, {
+        const { data } = await axios.get(`https://telemedicine-0i2m.onrender.com/api/appointments/${appointmentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAppointment(data);
@@ -31,7 +31,7 @@ const ReviewFormPage = () => {
     const fetchReview = async () => {
       try {
         const token = localStorage.getItem("token");
-        const { data } = await axios.get(`http://localhost:8080/api/reviews/${appointmentId}`, {
+        const { data } = await axios.get(`https://telemedicine-0i2m.onrender.com/api/reviews/${appointmentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setReview(data);
@@ -55,7 +55,7 @@ const ReviewFormPage = () => {
       if (isEditing) {
         console.log(appointment._id);
         data = await axios.put(
-          `http://localhost:8080/api/reviews/${appointment._id}`,
+          `https://telemedicine-0i2m.onrender.com/api/reviews/${appointment._id}`,
           { rating, comment },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -64,7 +64,7 @@ const ReviewFormPage = () => {
         navigate(`/doctor/${appointment.doctor._id}`);
       } else {
         data = await axios.post(
-          `http://localhost:8080/api/reviews/${appointment._id}`,
+          `https://telemedicine-0i2m.onrender.com/api/reviews/${appointment._id}`,
           { rating, comment },
           {
             headers: { Authorization: `Bearer ${token}` },
