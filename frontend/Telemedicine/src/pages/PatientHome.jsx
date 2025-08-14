@@ -8,7 +8,7 @@ const PatientHome = () => {
   const [filteredDoctors, setFilteredDoctors] = useState([]);
 
   useEffect(() => {
-    fetch("https://telemedicine-0i2m.onrender.com/doctors")
+    fetch(`${process.env.BACKEND_URL}/doctors`)
       .then((res) => res.json())
       .then((data) => {
         setDoctors(data);
