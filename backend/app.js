@@ -27,7 +27,7 @@ const dbUrl = process.env.ATLASDB_URL;
 const server = http.createServer(app);
 const io = socketIO(server, {
   cors: {
-    origin: "http://localhost:5173", // Adjust for frontend URL
+    origin: process.env.FRONTEND_URL, // Adjust for frontend URL
     methods: ["GET", "POST"],
   },
 });
