@@ -13,6 +13,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import { useNavigate } from 'react-router-dom';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Appointments = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const Appointments = () => {
 
   const fetchAppointments = async () => {
     const token = localStorage.getItem("token");
-    const response = await fetch(`${process.env.BACKEND_URL}/appointments`, {
+    const response = await fetch(`${BACKEND_URL}/appointments`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
