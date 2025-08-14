@@ -5,6 +5,7 @@ import {
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const PrescriptionForm = ({ appointmentId, userRole }) => {
   const [medicines, setMedicines] = useState([{ name: '', dosage: '', instructions: '' }]);
@@ -15,7 +16,7 @@ const PrescriptionForm = ({ appointmentId, userRole }) => {
     const fetchPrescription = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`${process.env.BACKEND_URL}/prescriptions/${appointmentId}`, {
+        const res = await axios.get(`${BACKEND_URL}/prescriptions/${appointmentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -50,7 +51,7 @@ const PrescriptionForm = ({ appointmentId, userRole }) => {
   const savePrescription = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.post(`${process.env.BACKEND_URL}/prescriptions/save`, {
+      await axios.post(`${BACKEND_URL}/prescriptions/save`, {
         appointmentId,
         medicines,
         notes,

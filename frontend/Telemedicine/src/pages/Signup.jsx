@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TextField, Button, Card, CardContent, Typography, Grid, Box } from "@mui/material";
 import { MenuItem, Select, InputLabel, FormControl } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -32,7 +33,7 @@ const Signup = () => {
           ? { age }
           : {};
 
-    const response = await fetch(`${process.env.BACKEND_URL}user/signup`, {
+    const response = await fetch(`${BACKEND_URL}user/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...baseData, ...roleSpecificData }),

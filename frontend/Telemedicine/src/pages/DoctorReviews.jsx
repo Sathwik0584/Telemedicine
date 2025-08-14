@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { Typography, Box, Avatar, Rating, Divider, Button } from "@mui/material";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const DoctorReviews = ({ doctorId }) => {
   const [reviews, setReviews] = useState([]);
@@ -10,7 +11,7 @@ const DoctorReviews = ({ doctorId }) => {
 
   const fetchReviews = async () => {
     try {
-      const { data } = await axios.get(`${process.env.BACKEND_URL}/reviews/doctor/${doctorId}`);
+      const { data } = await axios.get(`${BACKEND_URL}/reviews/doctor/${doctorId}`);
       setReviews(data);
     } catch (err) {
       console.error("Failed to load reviews:", err);
@@ -31,7 +32,7 @@ const DoctorReviews = ({ doctorId }) => {
   const handleDeleteReview = async (reviewId) => {
     const token = localStorage.getItem("token");
     try {
-      await fetch(`${process.env.BACKEND_URL}/reviews/${reviewId}`, {
+      await fetch(`${BACKEND_URL}/reviews/${reviewId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

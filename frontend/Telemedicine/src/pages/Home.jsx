@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 import SearchIcon from "@mui/icons-material/Search";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const PatientHome = () => {
   const [doctors, setDoctors] = useState([]);
@@ -26,7 +27,7 @@ const PatientHome = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get(`${process.env.BACKEND_URL}/doctors`);
+        const response = await axios.get(`${BACKEND_URL}/doctors`);
         const doctorsData = Array.isArray(response.data) ? response.data : [];
         setDoctors(doctorsData);
       } catch (error){

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container, Typography, TextField, Button, Box, Rating } from "@mui/material";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ReviewFormPage = () => {
   const { appointmentId } = useParams();
@@ -17,7 +18,7 @@ const ReviewFormPage = () => {
     const fetchAppointment = async () => {
       try {
         const token = localStorage.getItem("token");
-        const { data } = await axios.get(`${process.env.BACKEND_URL}/appointments/${appointmentId}`, {
+        const { data } = await axios.get(`${BACKEND_URL}/appointments/${appointmentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAppointment(data);
@@ -31,7 +32,7 @@ const ReviewFormPage = () => {
     const fetchReview = async () => {
       try {
         const token = localStorage.getItem("token");
-        const { data } = await axios.get(`${process.env.BACKEND_URL}/reviews/${appointmentId}`, {
+        const { data } = await axios.get(`${BACKEND_URL}/reviews/${appointmentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setReview(data);
@@ -55,7 +56,7 @@ const ReviewFormPage = () => {
       if (isEditing) {
         console.log(appointment._id);
         data = await axios.put(
-          `${process.env.BACKEND_URL}/reviews/${appointment._id}`,
+          `${BACKEND_URL}/reviews/${appointment._id}`,
           { rating, comment },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -64,7 +65,7 @@ const ReviewFormPage = () => {
         navigate(`/doctor/${appointment.doctor._id}`);
       } else {
         data = await axios.post(
-          `${process.env.BACKEND_URL}/reviews/${appointment._id}`,
+          `${BACKEND_URL}/reviews/${appointment._id}`,
           { rating, comment },
           {
             headers: { Authorization: `Bearer ${token}` },

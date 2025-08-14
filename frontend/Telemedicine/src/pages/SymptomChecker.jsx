@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Box, CircularProgress } from "@mui/material";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const SymptomChecker = () => {
   const [symptoms, setSymptoms] = useState("");
@@ -9,7 +10,7 @@ const SymptomChecker = () => {
   const analyzeSymptoms = async () => {
     setLoading(true);
     try {
-      const response = await fetch("https://telemedicine-0i2m.onrender.com/api/symptom-checker/analyze", {
+      const response = await fetch(`${BACKEND_URL}/api/symptom-checker/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ symptoms }),

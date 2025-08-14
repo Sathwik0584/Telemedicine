@@ -12,6 +12,7 @@ import {
   Alert,
 } from "@mui/material";
 import axios from "axios";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const AppointmentSummary = () => {
   const location = useLocation();
@@ -54,7 +55,7 @@ const AppointmentSummary = () => {
 
       // Call backend to create Razorpay order
       const { data } = await axios.post(
-        `${process.env.BACKEND_URL}/payment/create-order`,
+        `${BACKEND_URL}/payment/create-order`,
         { amount: doctor.fee },
         {
           headers: {
@@ -73,7 +74,7 @@ const AppointmentSummary = () => {
         handler: async function (response) {
           try {
             await axios.post(
-              `${process.env.BACKEND_URL}/appointments/book`,
+              `${BACKEND_URL}/appointments/book`,
               {
                 doctor: doctor._id,
                 patient: patientId,

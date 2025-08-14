@@ -13,6 +13,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import DescriptionIcon from '@mui/icons-material/Description';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const PrescriptionHistory = ({ appointmentId }) => {
     const [history, setHistory] = useState([]);
@@ -22,7 +23,7 @@ const PrescriptionHistory = ({ appointmentId }) => {
         const fetchHistory = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get(`${process.env.BACKEND_URL}/prescriptions/${appointmentId}`, {
+                const res = await axios.get(`${BACKEND_URL}/prescriptions/${appointmentId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setHistory(res.data);

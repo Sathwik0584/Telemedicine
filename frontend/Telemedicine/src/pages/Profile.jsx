@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Profile = () => {
   const [profileImage, setProfileImage] = useState("");
@@ -26,7 +27,7 @@ const Profile = () => {
       }
 
       try {
-        const response = await fetch(`${process.env.BACKEND_URL}/profile`, {
+        const response = await fetch(`${BACKEND_URL}/profile`, {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -57,7 +58,7 @@ const Profile = () => {
 
     try {
       console.log(JSON.stringify({ formData }));
-      const response = await fetch(`${process.env.BACKEND_URL}/profile/update`, {
+      const response = await fetch(`${BACKEND_URL}/profile/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -201,7 +201,7 @@ const Appointments = () => {
                     startIcon={<HighlightOffIcon />}
                     onClick={async () => {
                       const token = localStorage.getItem("token");
-                      await fetch(`${process.env.BACKEND_URL}appointments/update/${appt._id}`, {
+                      await fetch(`${BACKEND_URL}appointments/update/${appt._id}`, {
                         method: "PATCH",
                         headers: {
                           "Content-Type": "application/json",

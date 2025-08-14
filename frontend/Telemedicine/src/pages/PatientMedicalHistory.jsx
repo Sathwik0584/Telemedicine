@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const PatientMedicalHistory = () => {
   const [expanded, setExpanded] = useState(false);
@@ -30,7 +31,7 @@ const PatientMedicalHistory = () => {
     const fetchHistory = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`${process.env.BACKEND_URL}/patients/medical-history`, {
+        const res = await axios.get(`${BACKEND_URL}/patients/medical-history`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -67,7 +68,7 @@ const PatientMedicalHistory = () => {
         otherNotes: history.otherNotes,
       };
 
-      await axios.put(`${process.env.BACKEND_URL}/patients/medical-history`, payload, {
+      await axios.put(`${BACKEND_URL}/patients/medical-history`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

@@ -3,6 +3,7 @@ import { TextField, Button, Card, CardContent, Typography, Grid, Box } from "@mu
 import { useLocation,useNavigate } from "react-router-dom";
 import { MenuItem, Select, InputLabel, FormControl } from "@mui/material";
 import { motion } from "framer-motion";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${process.env.BACKEND_URL}/user/login`, {
+    const response = await fetch(`${BACKEND_URL}/user/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, role })

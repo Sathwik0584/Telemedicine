@@ -8,6 +8,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from "axios";
 import ReviewForm from "./ReviewForm";
 import DoctorReviews from "./DoctorReviews";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const TabPanel = ({ children, value, index }) => {
   return value === index ? (
@@ -33,7 +34,7 @@ const DoctorProfile = () => {
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
-        const response = await axios.get(`${process.env.BACKEND_URL}/doctors/${id}`);
+        const response = await axios.get(`${BACKEND_URL}/doctors/${id}`);
         setDoctor(response.data);
       } catch (error) {
         console.error("Error fetching doctor details", error);
