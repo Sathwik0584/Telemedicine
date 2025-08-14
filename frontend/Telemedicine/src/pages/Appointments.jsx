@@ -34,7 +34,7 @@ const Appointments = () => {
 
   const fetchAppointments = async () => {
     const token = localStorage.getItem("token");
-    const response = await fetch(`${BACKEND_URL}/appointments`, {
+    const response = await fetch(`${BACKEND_URL}/api/appointments`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
