@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const cors = require('cors');
-const passport = require('passport');
 const bodyParser = require("body-parser");
 require('./config/passport'); // Passport strategy setup
 const http = require("http");
@@ -28,7 +27,7 @@ const dbUrl = process.env.ATLASDB_URL;
 const server = http.createServer(app);
 const io = socketIO(server, {
   cors: {
-    origin: "*", // Adjust for frontend URL
+    origin: "http://localhost:5173", // Adjust for frontend URL
     methods: ["GET", "POST"],
   },
 });
@@ -62,9 +61,6 @@ app.use(session({
     httpOnly: true,
   },
 }));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Routes
 app.use('/user', userRoutes);
