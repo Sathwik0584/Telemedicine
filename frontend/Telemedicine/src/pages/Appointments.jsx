@@ -33,7 +33,7 @@ const Appointments = () => {
 
   const fetchAppointments = async () => {
     const token = localStorage.getItem("token");
-    const response = await fetch("https://telemedicine-0i2m.onrender.com/appointments", {
+    const response = await fetch(`${process.env.BACKEND_URL}/appointments`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
@@ -181,7 +181,7 @@ const Appointments = () => {
                     startIcon={<CheckCircleIcon />}
                     onClick={async () => {
                       const token = localStorage.getItem("token");
-                      await fetch(`https://telemedicine-0i2m.onrender.com/appointments/update/${appt._id}`, {
+                      await fetch(`${process.env.BACKEND_URL}/appointments/update/${appt._id}`, {
                         method: "PATCH",
                         headers: {
                           "Content-Type": "application/json",
@@ -200,7 +200,7 @@ const Appointments = () => {
                     startIcon={<HighlightOffIcon />}
                     onClick={async () => {
                       const token = localStorage.getItem("token");
-                      await fetch(`https://telemedicine-0i2m.onrender.com/appointments/update/${appt._id}`, {
+                      await fetch(`${process.env.BACKEND_URL}appointments/update/${appt._id}`, {
                         method: "PATCH",
                         headers: {
                           "Content-Type": "application/json",
