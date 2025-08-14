@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const RAZORPAY_KEY_ID = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
 const AppointmentSummary = () => {
   const location = useLocation();
@@ -65,7 +66,7 @@ const AppointmentSummary = () => {
       );
 
       const options = {
-        key: "rzp_test_3sUvwjenYATcp2", // Your Razorpay Key ID
+        key: RAZORPAY_KEY_ID, // Your Razorpay Key ID
         amount: data.amount,
         currency: "INR",
         name: "TelemedCare",
