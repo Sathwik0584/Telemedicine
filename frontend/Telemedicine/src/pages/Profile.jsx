@@ -26,7 +26,7 @@ const Profile = () => {
       }
 
       try {
-        const response = await fetch("https://telemedicine-0i2m.onrender.com/api/profile", {
+        const response = await fetch("https://telemedicine-0i2m.onrender.com/profile", {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -57,7 +57,7 @@ const Profile = () => {
 
     try {
       console.log(JSON.stringify({ formData }));
-      const response = await fetch("https://telemedicine-0i2m.onrender.com/api/profile/update", {
+      const response = await fetch("https://telemedicine-0i2m.onrender.com/profile/update", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

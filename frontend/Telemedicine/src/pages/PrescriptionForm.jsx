@@ -15,7 +15,7 @@ const PrescriptionForm = ({ appointmentId, userRole }) => {
     const fetchPrescription = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`https://telemedicine-0i2m.onrender.com/api/prescriptions/${appointmentId}`, {
+        const res = await axios.get(`https://telemedicine-0i2m.onrender.com/prescriptions/${appointmentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -50,7 +50,7 @@ const PrescriptionForm = ({ appointmentId, userRole }) => {
   const savePrescription = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.post("https://telemedicine-0i2m.onrender.com/api/prescriptions/save", {
+      await axios.post("https://telemedicine-0i2m.onrender.com/prescriptions/save", {
         appointmentId,
         medicines,
         notes,

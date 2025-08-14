@@ -68,13 +68,13 @@ app.use(passport.session());
 
 // Routes
 app.use('/user', userRoutes);
-app.use("/api/profile", profileRoutes);
-app.use("/api/appointments", appointmentRoutes);
-app.use("/api/doctors", doctorRoutes);
-app.use("/api/prescriptions", prescriptionRoutes);
-app.use("/api/patients", patientRoutes);
-app.use('/api/reviews', reviewRoutes);
-app.use("/api/payment", paymentRoutes);
+app.use("/profile", profileRoutes);
+app.use("/appointments", appointmentRoutes);
+app.use("/doctors", doctorRoutes);
+app.use("/prescriptions", prescriptionRoutes);
+app.use("/patients", patientRoutes);
+app.use('/reviews', reviewRoutes);
+app.use("/payment", paymentRoutes);
 
 
 // Database Connection
@@ -90,11 +90,6 @@ server.listen(8080, () => console.log(`--------Server + Socket.IO running on por
 io.on('connection', (socket) => {
   console.log("✅ A user connected:", socket.id);
 
-  // Appointment broadcasting
-  socket.on("new-appointment", (appointment) => {
-    io.emit("appointment-updated", appointment);
-  });
-
   // Join room
   socket.on('joinRoom', async (appointmentId) => {
     socket.join(appointmentId);
@@ -103,12 +98,7 @@ io.on('connection', (socket) => {
     // Send chat history
     const messages = await Message.find({ appointmentId }).sort({ timestamp: 1 });
     socket.emit('messageHistory', messages);
-  });
-
-  socket.on('signal', ({ appointmentId, signalData }) => {
-    console.log(`📶 Relaying signal for appointment: ${appointmentId}`);
-    socket.to(appointmentId).emit('signal', { signalData });
-  });  
+  }); 
 
   // Receive message
   socket.on('sendMessage', async ({ appointmentId, message, sender }) => {
@@ -117,7 +107,7 @@ io.on('connection', (socket) => {
     const newMessage = await Message.create({ appointmentId, message, sender });
 
     // Send to everyone in the room
-    io.to(appointmentId).emit('receiveMessage', newMessage);
+    socket.emit('receiveMessage', newMessage);
   });
 
   // Disconnect

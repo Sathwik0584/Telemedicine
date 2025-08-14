@@ -30,7 +30,7 @@ const PatientMedicalHistory = () => {
     const fetchHistory = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("https://telemedicine-0i2m.onrender.com/api/patients/medical-history", {
+        const res = await axios.get("https://telemedicine-0i2m.onrender.com/patients/medical-history", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -67,7 +67,7 @@ const PatientMedicalHistory = () => {
         otherNotes: history.otherNotes,
       };
 
-      await axios.put('https://telemedicine-0i2m.onrender.com/api/patients/medical-history', payload, {
+      await axios.put('https://telemedicine-0i2m.onrender.com/patients/medical-history', payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

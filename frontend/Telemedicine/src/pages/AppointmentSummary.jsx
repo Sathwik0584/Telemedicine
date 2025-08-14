@@ -54,7 +54,7 @@ const AppointmentSummary = () => {
 
       // Call backend to create Razorpay order
       const { data } = await axios.post(
-        "https://telemedicine-0i2m.onrender.com/api/payment/create-order",
+        "https://telemedicine-0i2m.onrender.com/payment/create-order",
         { amount: doctor.fee },
         {
           headers: {
@@ -73,7 +73,7 @@ const AppointmentSummary = () => {
         handler: async function (response) {
           try {
             await axios.post(
-              "https://telemedicine-0i2m.onrender.com/api/appointments/book",
+              "https://telemedicine-0i2m.onrender.com/appointments/book",
               {
                 doctor: doctor._id,
                 patient: patientId,

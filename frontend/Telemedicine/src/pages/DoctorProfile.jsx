@@ -33,7 +33,7 @@ const DoctorProfile = () => {
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
-        const response = await axios.get(`https://telemedicine-0i2m.onrender.com/api/doctors/${id}`);
+        const response = await axios.get(`https://telemedicine-0i2m.onrender.com/doctors/${id}`);
         setDoctor(response.data);
       } catch (error) {
         console.error("Error fetching doctor details", error);

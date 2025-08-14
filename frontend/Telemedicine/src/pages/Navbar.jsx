@@ -32,14 +32,6 @@ const menuItems = isLoggedIn
       { text: "Signup", path: "/signup" },
     ];
 
-
-  // const menuItems = [
-  //   { text: "Home", path: "/" },
-  //   { text: "Appointments", path: "/appointments" },
-  //   { text: "Profile", path: "/profile" },
-  //   { text: "Logout", action: handleLogout },
-  // ];
-
   return (
     <AppBar
       position="sticky"

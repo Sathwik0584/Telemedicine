@@ -10,7 +10,7 @@ const DoctorReviews = ({ doctorId }) => {
 
   const fetchReviews = async () => {
     try {
-      const { data } = await axios.get(`https://telemedicine-0i2m.onrender.com/api/reviews/doctor/${doctorId}`);
+      const { data } = await axios.get(`https://telemedicine-0i2m.onrender.com/reviews/doctor/${doctorId}`);
       setReviews(data);
     } catch (err) {
       console.error("Failed to load reviews:", err);
@@ -31,7 +31,7 @@ const DoctorReviews = ({ doctorId }) => {
   const handleDeleteReview = async (reviewId) => {
     const token = localStorage.getItem("token");
     try {
-      await fetch(`https://telemedicine-0i2m.onrender.com/api/reviews/${reviewId}`, {
+      await fetch(`https://telemedicine-0i2m.onrender.com/reviews/${reviewId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
